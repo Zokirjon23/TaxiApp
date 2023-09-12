@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">TaxiApp</string>
+    <string name="phone_number">Phone number</string>
+    <string name="enter_phone_number">Enter phone number</string>
+    <string name="password">Password</string>
 </resources>

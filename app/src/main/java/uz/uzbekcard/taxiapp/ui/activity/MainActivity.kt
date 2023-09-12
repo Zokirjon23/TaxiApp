@@ -17,6 +17,7 @@ import uz.uzbekcard.taxiapp.util.navigation.NavigationDispatcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.get
+import uz.uzbekcard.taxiapp.ui.screen.LoginScreen
 import uz.uzbekcard.taxiapp.ui.theme.TaxiAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -32,7 +33,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Navigator(SplashScreen()) { navigation ->
+                    Navigator(LoginScreen()) { navigation ->
                         LaunchedEffect(key1 = navigation){
                             dispatcher.dispatcher.onEach {
                                    it(navigation)
