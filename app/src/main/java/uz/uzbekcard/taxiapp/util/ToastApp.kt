@@ -152,12 +152,13 @@ fun ToastError(
     ) {
         Box(
             modifier = Modifier
-                .defaultMinSize(minHeight = 50.dp)
                 .background(color_background, RoundedCornerShape(10.dp))
+
         ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .defaultMinSize(minHeight = 50.dp)
                     .background(error_color.copy(0.15f))
                     .padding(horizontal = 22.dp),
                 verticalAlignment = Alignment.CenterVertically
