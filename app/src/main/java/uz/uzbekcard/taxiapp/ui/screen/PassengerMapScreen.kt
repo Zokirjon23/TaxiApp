@@ -57,26 +57,26 @@ class PassengerMapScreen : Tab {
         uiState: State<PassagerMapUiState>,
         intent: (PassagerMapIntent) -> Unit
     ) {
-        val cameraState = rememberCameraPositionState()
-        BoxApp {
-            val marker = LatLng(41.0, 69.0)
-            GoogleMap(
-                modifier = Modifier.fillMaxSize(),
-                cameraPositionState = cameraState,
-                properties = MapProperties(
-                    isMyLocationEnabled = true,
-                    mapType = MapType.HYBRID,
-                    isTrafficEnabled = true
-                )
-            ) {
-                Marker(
-                    state = MarkerState(position = marker),
-                    title = "MyPosition",
-                    snippet = "This is a description of this Marker",
-                    draggable = true
-                )
-            }
-        }
+//        val cameraState = rememberCameraPositionState()
+//        BoxApp {
+//            val marker = LatLng(41.0, 69.0)
+//            GoogleMap(
+//                modifier = Modifier.fillMaxSize(),
+//                cameraPositionState = cameraState,
+//                properties = MapProperties(
+//                    isMyLocationEnabled = true,
+//                    mapType = MapType.HYBRID,
+//                    isTrafficEnabled = true
+//                )
+//            ) {
+//                Marker(
+//                    state = MarkerState(position = marker),
+//                    title = "MyPosition",
+//                    snippet = "This is a description of this Marker",
+//                    draggable = true
+//                )
+//            }
+//        }
     }
 
     @Preview
