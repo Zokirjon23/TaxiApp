@@ -24,12 +24,12 @@ class PassengerSettingScreen : Tab {
     override val options: TabOptions
         @Composable
         get() {
-            val title = stringResource(R.string.enter_phone_number)
-            val icon = rememberVectorPainter(ImageVector.vectorResource(id = R.drawable.ic_arrow_left))
+            val title = "Setting"
+            val icon = rememberVectorPainter(ImageVector.vectorResource(id = R.drawable.ic_settings))
 
             return remember {
                 TabOptions(
-                    index = 1u,
+                    index = 3u,
                     title = title,
                     icon = icon
                 )

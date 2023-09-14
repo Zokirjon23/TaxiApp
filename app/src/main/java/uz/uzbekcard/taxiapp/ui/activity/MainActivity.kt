@@ -18,6 +18,7 @@ import uz.uzbekcard.taxiapp.util.navigation.NavigationDispatcher
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.get
+import uz.uzbekcard.taxiapp.ui.screen.ContainerScreen
 import uz.uzbekcard.taxiapp.ui.screen.LoginScreen
 import uz.uzbekcard.taxiapp.ui.theme.TaxiAppTheme
 
@@ -25,7 +26,7 @@ class MainActivity : ComponentActivity() {
 
     private val dispatcher : NavigationDispatcher = get()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             TaxiAppTheme {
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color.White
                 ) {
-                    Navigator(LoginScreen()) { navigation ->
+                    Navigator(ContainerScreen()) { navigation ->
                         LaunchedEffect(key1 = navigation){
                             dispatcher.dispatcher.onEach {
                                    it(navigation)

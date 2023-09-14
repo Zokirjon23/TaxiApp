@@ -24,8 +24,8 @@ class DirectionScreen : Tab {
     override val options: TabOptions
         @Composable
         get() {
-            val title = stringResource(R.string.enter_phone_number)
-            val icon = rememberVectorPainter(ImageVector.vectorResource(id = R.drawable.ic_arrow_left))
+            val title = "Direction"
+            val icon = rememberVectorPainter(ImageVector.vectorResource(id = R.drawable.ic_direction))
 
             return remember {
                 TabOptions(

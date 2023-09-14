@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -88,7 +89,7 @@ dependencies {
     /**
      * Navigatior
      */
-    val voyagerVersion = "1.0.0-rc06"
+    val voyagerVersion = "1.0.0-rc07"
     implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion")
     implementation("cafe.adriel.voyager:voyager-tab-navigator:$voyagerVersion")
     implementation("cafe.adriel.voyager:voyager-transitions:$voyagerVersion")
@@ -113,4 +114,11 @@ dependencies {
      * Lotti
      */
     implementation("com.airbnb.android:lottie-compose:6.0.1")
+
+    /**
+     * Google Services & Maps
+     */
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("com.google.maps.android:maps-compose:2.9.0")
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
 }
