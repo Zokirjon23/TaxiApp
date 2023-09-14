@@ -64,7 +64,8 @@ fun TextFieldApp(
     keyboardOptions: KeyboardOptions = KeyboardOptions(
         imeAction = ImeAction.Next,
         keyboardType = KeyboardType.Text
-    ), length: Int = Int.MAX_VALUE
+    ),
+    length: Int = Int.MAX_VALUE,
 ) {
     OutlinedTextField(
         value = state.value,
@@ -107,9 +108,9 @@ fun DescriptionTextFieldApp(
                 .height(60.dp),
             shape = RoundedCornerShape(10.dp),
             colors = OutlinedTextFieldDefaults.colors(
-                focusedBorderColor = if(error) color_primary else color_secondary.copy(0.5f),
-                unfocusedBorderColor = if(error) color_primary else Color(0x26000026),
-                focusedLabelColor = if(error) color_primary else color_secondary
+                focusedBorderColor = if (error) color_primary else color_secondary.copy(0.5f),
+                unfocusedBorderColor = if (error) color_primary else Color(0x26000026),
+                focusedLabelColor = if (error) color_primary else color_secondary
             ),
             label = { TextApp(text = hint, color = text_color.copy(0.5f)) },
             singleLine = singleLine,
@@ -134,7 +135,7 @@ fun TextFieldPhoneApp(
     mask: String = "+(998) 00 000 00 00",
     maskNumber: Char = '0',
     imeAction: ImeAction = ImeAction.Next,
-    onPhoneChanged: (String) -> Unit
+    onPhoneChanged: (String) -> Unit,
 ) {
     OutlinedTextField(
         value = phone,
@@ -276,7 +277,12 @@ fun TextFieldPasswordApp(
 }
 
 @Composable
-fun RegistrationCodeInput(codeLength: Int, initialCode: String, onTextChanged: (String) -> Unit) {
+fun RegistrationCodeInput(
+    modifier: Modifier = Modifier,
+    codeLength: Int,
+    initialCode: String,
+    onTextChanged: (String) -> Unit,
+) {
     val code = remember(initialCode) {
         mutableStateOf(TextFieldValue(initialCode, TextRange(initialCode.length)))
     }
@@ -285,13 +291,14 @@ fun RegistrationCodeInput(codeLength: Int, initialCode: String, onTextChanged: (
         focusRequester.requestFocus()
     }
 
-    Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
+    Box(modifier = modifier, contentAlignment = Alignment.Center) {
         BasicTextField(
             value = code.value,
             onValueChange = { onTextChanged(it.text) },
             modifier = Modifier.focusRequester(focusRequester = focusRequester),
             keyboardOptions = KeyboardOptions.Default.copy(
-                imeAction = ImeAction.Done,keyboardType = KeyboardType.Number),
+                imeAction = ImeAction.Done, keyboardType = KeyboardType.Number
+            ),
             decorationBox = {
                 CodeInputDecoration(code.value.text, codeLength)
             }
