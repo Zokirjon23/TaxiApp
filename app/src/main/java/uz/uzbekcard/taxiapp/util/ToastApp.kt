@@ -153,7 +153,6 @@ fun ToastError(
         Box(
             modifier = Modifier
                 .background(color_background, RoundedCornerShape(10.dp))
-
         ) {
             Row(
                 modifier = Modifier

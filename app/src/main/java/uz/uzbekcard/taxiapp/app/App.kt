@@ -4,7 +4,7 @@ import android.app.Application
 import uz.uzbekcard.taxiapp.di.navigationModule
 import uz.uzbekcard.taxiapp.di.networkModule
 import uz.uzbekcard.taxiapp.di.presenterModule
-import uz.uzbekcard.taxiapp.di.repositoryModule
+import uz.uzbekcard.taxiapp.di.authRepositoryModule
 import uz.uzbekcard.taxiapp.di.storageModule
 import uz.uzbekcard.taxiapp.di.useCaseModule
 import org.koin.android.ext.koin.androidContext
@@ -25,7 +25,7 @@ class App : Application() {
                 presenterModule,
                 storageModule,
                 networkModule,
-                repositoryModule,
+                authRepositoryModule,
                 directionModule
             )
         }
