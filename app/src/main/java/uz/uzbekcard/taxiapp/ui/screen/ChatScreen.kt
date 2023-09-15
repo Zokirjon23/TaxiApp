@@ -1,15 +1,21 @@
 package uz.uzbekcard.taxiapp.ui.screen
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.tab.Tab
 import cafe.adriel.voyager.navigator.tab.TabOptions
@@ -19,6 +25,8 @@ import uz.uzbekcard.taxiapp.presenter.impl.ChatPresenterImpl
 import uz.uzbekcard.taxiapp.ui.intent.ChatIntent
 import uz.uzbekcard.taxiapp.ui.uistate.ChatUiState
 import uz.uzbekcard.taxiapp.util.AppScreen
+import uz.uzbekcard.taxiapp.util.component.BoxApp
+import uz.uzbekcard.taxiapp.util.component.IconApp
 
 class ChatScreen : Tab {
 
@@ -47,7 +55,16 @@ class ChatScreen : Tab {
 
     @Composable
     fun ChatScreenContent(uiState: State<ChatUiState>, intent: (ChatIntent) -> Unit) {
+        BoxApp {
+            Column(Modifier.padding(top = 30.dp)) {
+                Row(Modifier.padding(16.dp)) {
+                    IconButton(onClick = { /*TODO*/ }) {
+                        IconApp(id = R.drawable.ic_back)
+                    }
 
+                }
+            }
+        }
     }
 
     @Preview
