@@ -15,7 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -53,19 +53,20 @@ import uz.uzbekcard.taxiapp.ui.uistate.ChatUserUiState
 import uz.uzbekcard.taxiapp.util.component.BoxApp
 import uz.uzbekcard.taxiapp.util.component.IconApp
 import uz.uzbekcard.taxiapp.util.component.TextApp
+import uz.uzbekcard.taxiapp.util.component.ToolbarApp
 
 class ChatUserScreen : Tab {
 
     override val options: TabOptions
         @Composable
         get() {
-            val title = stringResource(R.string.enter_phone_number)
+            val title = "Chat"
             val icon =
-                rememberVectorPainter(ImageVector.vectorResource(id = R.drawable.ic_arrow_left))
+                rememberVectorPainter(ImageVector.vectorResource(id = R.drawable.ic_chat))
 
             return remember {
                 TabOptions(
-                    index = 1u,
+                    index = 2u,
                     title = title,
                     icon = icon
                 )
@@ -82,7 +83,7 @@ class ChatUserScreen : Tab {
     @Composable
     fun ChatUserScreenContent(
         uiState: State<ChatUserUiState>,
-        intent: (ChatUserIntent) -> Unit
+        intent: (ChatUserIntent) -> Unit,
     ) {
         BoxApp(
             modifier = Modifier
@@ -91,11 +92,15 @@ class ChatUserScreen : Tab {
                 .background(color = color_primary)
         ) {
             Column {
-                Column(Modifier.padding(vertical = 20.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        IconButton(onClick = { /*TODO*/ },Modifier.padding(start = 2.dp,end = 5.dp)) {
-                            IconApp(id = R.drawable.ic_back,tint = Color.White)
-                        }
+                Column(Modifier) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .shadow(elevation = 10.dp)
+                            .background(color_primary)
+                            .height(56.dp).padding(start = 20.dp)
+                    ) {
                         TextApp(
                             text = "Chat Taxi",
                             fontSize = 22.sp,
@@ -103,7 +108,11 @@ class ChatUserScreen : Tab {
                         )
                     }
 
-                    Box(modifier = Modifier.fillMaxWidth()) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 10.dp)
+                    ) {
                         TextApp(
                             text = "Online taksistlar",
                             fontSize = 20.sp,
@@ -155,75 +164,75 @@ class ChatUserScreen : Tab {
                         }
                     }
                 }
-                Column(
+                LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
                         .background(
                             color = Color(0xFFFFFFFF),
                             shape = RoundedCornerShape(topStart = 15.dp, topEnd = 15.dp)
                         )
-                        .padding(top = 25.dp)
+                        .padding(top = 20.dp)
                 ) {
-                    LazyColumn {
-                        item {
-                            TextApp(
-                                text = "Recent Chat",
-                                fontSize = 24.sp,
-                                fontWeight = FontWeight(600),
-                                color = Color(0xFF000000), modifier = Modifier.padding(bottom = 14.dp, start = 16.dp)
+                    item {
+                        TextApp(
+                            text = "Recent Chat",
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight(600),
+                            color = Color(0xFF000000),
+                            modifier = Modifier.padding(bottom = 10.dp, start = 16.dp)
+                        )
+                    }
+                    items(20) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { intent(ChatUserIntent.OpenChat()) }
+                                .padding(horizontal = 16.dp, vertical = 8.dp)
+                        ) {
+                            val painter = rememberAsyncImagePainter(
+                                model = ImageRequest.Builder(LocalContext.current)
+                                    .data("https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg")
+                                    .build()
                             )
-                        }
-                        items(20) {
-                            Row(
+                            Image(
                                 modifier = Modifier
-                                    .fillMaxWidth()
-                                    .clickable {  }
-                                    .padding(horizontal = 16.dp, vertical = 8.dp)
-                            ) {
-                                val painter = rememberAsyncImagePainter(
-                                    model = ImageRequest.Builder(LocalContext.current)
-                                        .data("https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50.jpg")
-                                        .build()
+                                    .padding(end = 18.dp)
+                                    .size(55.dp)
+                                    .shadow(3.dp, RoundedCornerShape(50))
+                                    .background(
+                                        Color(0xFFEAEBEB),
+                                        RoundedCornerShape(50)
+                                    ),
+                                painter = painter,
+                                contentDescription = null,
+                            )
+                            Column(Modifier.weight(0.8f)) {
+                                TextApp(
+                                    text = "Diana Leo",
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight(500),
+                                    color = Color(0xFF000000),
                                 )
-                                Image(
-                                    modifier = Modifier
-                                        .padding(end = 18.dp)
-                                        .size(55.dp)
-                                        .shadow(3.dp, RoundedCornerShape(50))
-                                        .background(
-                                            Color(0xFFEAEBEB),
-                                            RoundedCornerShape(50)
-                                        ),
-                                    painter = painter,
-                                    contentDescription = null,
+                                TextApp(
+                                    text = "ur welcome",
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight(300),
+                                    color = Color(0xFF726E6E),
                                 )
-                                Column(Modifier.weight(0.8f)) {
-                                    TextApp(
-                                        text = "Diana Leo",
-                                        fontSize = 18.sp,
-                                        fontWeight = FontWeight(500),
-                                        color = Color(0xFF000000),
-                                    )
-                                    TextApp(
-                                        text = "ur welcome",
-                                        fontSize = 18.sp,
-                                        fontWeight = FontWeight(300),
-                                        color = Color(0xFF726E6E),
-                                    )
-                                }
-                                Column(Modifier.weight(0.2f), horizontalAlignment = Alignment.End) {
-                                    TextApp(
-                                        text = "12:05",
-                                        fontSize = 15.sp,
-                                        fontWeight = FontWeight(300),
-                                        color = Color(0xFF878787),
+                            }
+                            Column(Modifier.weight(0.2f), horizontalAlignment = Alignment.End) {
+                                TextApp(
+                                    text = "12:05",
+                                    fontSize = 15.sp,
+                                    fontWeight = FontWeight(300),
+                                    color = Color(0xFF878787),
 
                                     )
-                                    Image(
-                                        painter = painterResource(id = R.drawable.ic_chat_done),
-                                        contentDescription = "image description",Modifier.padding(top = 5.dp)
-                                    )
-                                }
+                                Image(
+                                    painter = painterResource(id = R.drawable.ic_chat_done),
+                                    contentDescription = "image description",
+                                    Modifier.padding(top = 5.dp)
+                                )
                             }
                         }
                     }
@@ -233,7 +242,7 @@ class ChatUserScreen : Tab {
     }
 
 
-    @Preview
+    @Preview(showSystemUi = true)
     @Composable
     fun ChatUserPreview() {
         ChatUserScreenContent(uiState = remember {

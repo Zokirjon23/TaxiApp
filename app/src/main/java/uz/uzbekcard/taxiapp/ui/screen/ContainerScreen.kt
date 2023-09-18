@@ -50,7 +50,7 @@ class ContainerScreen : AppScreen {
                     ) {
                         TabNavigationItem(PassengerMapScreen())
                         TabNavigationItem(DirectionScreen())
-                        TabNavigationItem(ChatScreen())
+                        TabNavigationItem(ChatUserScreen())
                         TabNavigationItem(PassengerSettingScreen())
                     }
                 }

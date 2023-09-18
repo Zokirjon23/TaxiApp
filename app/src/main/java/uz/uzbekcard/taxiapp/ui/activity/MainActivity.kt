@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = Color.White
                 ) {
-                    Navigator(ChatUserScreen()) { navigation ->
+                    Navigator(ContainerScreen()) { navigation ->
                         LaunchedEffect(key1 = navigation){
                             dispatcher.dispatcher.onEach {
                                    it(navigation)

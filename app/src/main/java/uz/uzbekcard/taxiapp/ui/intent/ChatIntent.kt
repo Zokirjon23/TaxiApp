@@ -1,3 +1,5 @@
 package uz.uzbekcard.taxiapp.ui.intent
 
-sealed interface ChatIntent
+sealed interface ChatIntent{
+    object Back : ChatIntent
+}
