@@ -2,7 +2,6 @@ package uz.uzbekcard.taxiapp.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,7 +13,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
@@ -25,8 +23,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.PlatformTextStyle
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -43,6 +42,7 @@ import uz.uzbekcard.taxiapp.ui.intent.ChatIntent
 import uz.uzbekcard.taxiapp.ui.theme.color_primary
 import uz.uzbekcard.taxiapp.ui.uistate.ChatUiState
 import uz.uzbekcard.taxiapp.util.AppScreen
+import uz.uzbekcard.taxiapp.util.component.AppBasicTextField
 import uz.uzbekcard.taxiapp.util.component.BoxApp
 import uz.uzbekcard.taxiapp.util.component.IconApp
 import uz.uzbekcard.taxiapp.util.component.TextApp
@@ -68,7 +68,7 @@ class ChatScreen : AppScreen {
             Column {
                 Row(Modifier.padding(16.dp), verticalAlignment = Alignment.CenterVertically) {
                     IconButton(onClick = { }) {
-                        IconApp(id = R.drawable.ic_back)
+                        IconApp(id = R.drawable.ic_back, tint = Color.White)
                     }
                     Image(
                         modifier = Modifier
@@ -99,7 +99,7 @@ class ChatScreen : AppScreen {
                         )
                     }
                     IconButton(onClick = { /*TODO*/ }) {
-                        IconApp(id = R.drawable.ic_phone)
+                        IconApp(id = R.drawable.ic_phone, tint = Color.White)
                     }
                 }
 
@@ -107,29 +107,49 @@ class ChatScreen : AppScreen {
                     LazyColumn(
                         Modifier
                             .fillMaxSize()
-                            .padding(bottom = 90.dp)
-                            .background(
-                                Color.White,
-                                RoundedCornerShape(topEnd = 15.dp, topStart = 15.dp)
-                            )
-                    ) {}
+                            .padding(bottom = 58.dp)
+                    ) {
 
-                    Row(
+                    }
+                    Image(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .height(58.dp)
+                            .clip(
+                                RoundedCornerShape(topEnd = 15.dp, topStart = 15.dp)
+                            ),
+                        painter = painterResource(id = R.drawable.chat_background),
+                        contentDescription = null, contentScale = ContentScale.Crop
+                    )
+                    Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .align(Alignment.BottomCenter)
+                            .height(55.dp)
                             .background(Color.White),
-                        verticalAlignment = Alignment.CenterVertically
+                        contentAlignment = Alignment.CenterStart
                     ) {
-                        val s = remember {
-                            mutableStateOf("")
-                        }
-                        TextField(value = s.value, onValueChange = { s.value = it }, modifier = Modifier.weight(0.7f), textStyle = TextStyle(fontSize = 18.sp))
-                        Box(modifier = Modifier
+                        val s = remember { mutableStateOf("") }
+                        AppBasicTextField(
+                            value = s,
+                            placeholder = "type something",
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(start = 10.dp, end = 50.dp),
+                            textStyle = TextStyle(
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Medium,
+                                color = Color.DarkGray
+                            ),
+                        )
+                        IconButton(onClick = { },modifier = Modifier
+                            .padding(end = 10.dp)
                             .clip(RoundedCornerShape(50))
-                            .clickable { }
-                            .padding(8.dp)) {
-                            IconApp(id = R.drawable.ic_send)
+                            .align(Alignment.CenterEnd)) {
+                            IconApp(
+                                id = R.drawable.ic_send,
+                                tint = color_primary,
+                            )
                         }
                     }
                 }

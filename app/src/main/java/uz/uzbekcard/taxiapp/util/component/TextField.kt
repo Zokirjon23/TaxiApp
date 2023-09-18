@@ -41,6 +41,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.runtime.LaunchedEffect
@@ -48,6 +49,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.text.TextRange
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import uz.uzbekcard.taxiapp.R
 import uz.uzbekcard.taxiapp.ui.theme.color_primary
@@ -351,6 +353,34 @@ private fun CodeEntry(text: String) {
         )
     }
 }
+
+@Composable
+fun AppBasicTextField(modifier: Modifier = Modifier,placeholder: String = "",value : MutableState<String>,textStyle : TextStyle = TextStyle()) {
+    BasicTextField(
+        value = value.value,
+        onValueChange = { newText ->
+            value.value = newText
+        },
+        textStyle = textStyle,
+        modifier = modifier,
+        decorationBox = { innerTextField ->
+            Box(
+                modifier = modifier.fillMaxSize(), contentAlignment = Alignment.CenterStart,
+            ) {
+                if (value.value.isEmpty()) {
+                    Text(
+                        text = placeholder,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Normal,
+                        color = Color.LightGray
+                    )
+                }
+                innerTextField()
+            }
+        }
+    )
+}
+
 
 @Preview
 @Composable
